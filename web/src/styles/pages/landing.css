@@ -22,7 +22,7 @@
   flex-direction: column;
   justify-content: space-between;
 
-  background: url('../../images/home.svg') no-repeat 80% 10%;
+  background: url('../../images/home.svg') no-repeat 80% center;
 }
 
 #page-landing .content-wrapper main {
