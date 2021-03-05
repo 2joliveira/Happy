@@ -11,7 +11,7 @@ export default {
 
     const orphanagesRepository = getRepository(Orphanage);
 
-    const orphanage =  await orphanagesRepository.findOneOrFail(id, {
+    const orphanage = await orphanagesRepository.findOneOrFail(id, {
       relations: ['images']
     });
 
@@ -38,7 +38,7 @@ export default {
       opening_hours,
       open_on_weekends,
     } = request.body;
-  
+
     const orphanagesRepository = getRepository(Orphanage);
 
     const requestImages = request.files as Express.Multer.File[];
@@ -53,7 +53,7 @@ export default {
       about,
       instructions,
       opening_hours,
-      open_on_weekends,
+      open_on_weekends: open_on_weekends === 'true',
       images,
     };
 
@@ -63,7 +63,7 @@ export default {
       longitude: Yup.number().required(),
       about: Yup.string().required().max(300),
       instructions: Yup.string().required(),
-      opening_hours:  Yup.string().required(),
+      opening_hours: Yup.string().required(),
       open_on_weekends: Yup.boolean().required(),
       images: Yup.array(
         Yup.object().shape({
@@ -77,9 +77,9 @@ export default {
     });
 
     const orphanage = orphanagesRepository.create(data);
-  
+
     await orphanagesRepository.save(orphanage);
-  
+
     return response.status(201).json(orphanage);
   }
 }
