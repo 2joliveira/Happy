@@ -5,6 +5,8 @@ node_modules
 
 # misc
 uploads/*
+!uploads/.gitkeep
+
 src/database/*.sqlite
 .vscode
 .env
